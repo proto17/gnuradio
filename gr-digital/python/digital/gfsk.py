@@ -130,6 +130,9 @@ class gfsk_mod(gr.hier_block2):
 	# Connect & Initialize base class
 	self.connect(self, self.unpack, self.nrz, self.gaussian_filter, self.fmmod, self.amp, self)
 
+    def set_sensitivity(self, sensitivity):
+        self.fmmod.set_sensitivity(sensitivity)
+
     def samples_per_symbol(self):
         return self._samples_per_symbol
 
@@ -251,6 +254,9 @@ class gfsk_demod(gr.hier_block2):
 
 	# Connect & Initialize base class
 	self.connect(self, self.fmdemod, self.clock_recovery, self.slicer, self)
+
+    def set_sensitivity(self, sensitivity):
+        self.fmdemod.set_gain(1.0 / sensitivity)
 
     def samples_per_symbol(self):
         return self._samples_per_symbol

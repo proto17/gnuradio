@@ -18,7 +18,8 @@
 	verbose=$verbose,
 	log=$log,
 )</make>
-	<param>
+        <callback>set_sensitivity($sensitivity)</callback>
+        <param>
 		<name>Samples/Symbol</name>
 		<key>samples_per_symbol</key>
 		<value>2</value>
